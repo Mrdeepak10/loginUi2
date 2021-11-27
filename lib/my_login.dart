@@ -47,12 +47,12 @@ class _MyLoginState extends State<MyLogin> {
             labelText: "Email ID",
             labelStyle:
                 TextStyle(color: Colors.white, fontFamily: "LobsterTwo")),
-        onChanged: (value) {
-          setState(() {
-            print(value);
-            emailIdController.text = value;
-          });
-        },
+        // onChanged: (value) {
+        //   setState(() {
+        //     print(value);
+        //     emailIdController.text = value;
+        //   });
+        // },
       ),
     );
   }
@@ -81,11 +81,11 @@ class _MyLoginState extends State<MyLogin> {
             labelText: "Password",
             labelStyle:
                 TextStyle(color: Colors.white, fontFamily: "RobotoSlab")),
-        onChanged: (value) {
-          setState(() {
-            passwordController.text = value;
-          });
-        },
+        // onChanged: (value) {
+        //   setState(() {
+        //     passwordController.text = value;
+        //   });
+        // },
       ),
     );
   }
@@ -148,18 +148,17 @@ class _MyLoginState extends State<MyLogin> {
           width: 220,
           child: Center(
               child: GestureDetector(
-            onTap: () {
-              setState(() {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(
-                        user: ProfileModel(
-                            name: emailIdController.text,
-                            password: passwordController.text),
-                      ),
-                    ));
-              });
+            onTap: () async {
+              passwordController.text = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomePage(
+                    user: ProfileModel(
+                        name: emailIdController.text,
+                        password: passwordController.text),
+                  ),
+                ),
+              );
             },
             child: Text(
               "Login",
